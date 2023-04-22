@@ -8,7 +8,7 @@ const args = minimist(process.argv.slice(2));
 const timezone = moment.tz.guess();
 var day = args.d;
 
-if (args.h) {
+if ('h' in args) {
 
     console.log(`Usage: galosh.js [options] -[n|s] LATITUDE -[e|w] LONGITUDE -z TIME_ZONE
     -h            Show this help message and exit.
@@ -22,10 +22,12 @@ if (args.h) {
 
 const longitude = args.e || -args.w;
 const latitude = args.n || -args.s;
-const req = await fetch(`https://api.open-meteo.com/v1/forecast?latitude='+latitude+'&longitude='+longitude+'&timezone='+timezone+'&daily=precipitation_hours`);
+const req = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&timezone=' + timezone' + &daily=precipitation_hours`);
 const dt = await req.json();
 
 if('j' in args){
+    dt.latitude = parseFloat(data.latitude.toFixed(2));
+    dt.longitude = parseFloat(data.longitude.toFixed(2));
     console.log(dt);
     process.exit(0);
 }
