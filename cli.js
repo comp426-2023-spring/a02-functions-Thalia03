@@ -20,8 +20,8 @@ if (args.h) {
     process.exit(0);
 }
 
-const longitude = args.e || (-args.w);
-const latitude = args.n || (-args.s);
+const longitude = args.e || -args.w;
+const latitude = args.n || -args.s;
 
 
 const req = await fetch(`https://api.open-meteo.com/v1/forecast?latitude='+latitude+'&longitude='+longitude+'&timezone='+timezone+'&daily=precipitation_hours`);
