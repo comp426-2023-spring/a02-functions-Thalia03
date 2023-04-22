@@ -40,3 +40,5 @@ if (day == 0) {
 } else {
   console.log("Rain expected tomorrow!")
 }
+
+process.exit(0);
