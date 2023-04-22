@@ -22,10 +22,13 @@ if (args.h) {
 
 const longitude = args.e || -args.w;
 const latitude = args.n || -args.s;
-
-
 const req = await fetch(`https://api.open-meteo.com/v1/forecast?latitude='+latitude+'&longitude='+longitude+'&timezone='+timezone+'&daily=precipitation_hours`);
 const dt = await req.json();
+
+if('j' in args){
+    console.log(dt);
+    process.exit(0);
+}
 
 
 if (day == 0) {
@@ -35,7 +38,3 @@ if (day == 0) {
 } else {
   console.log("Rain expected tomorrow!")
 }
-
-
-
-
