@@ -5,7 +5,7 @@ import moment from 'moment-timezone';
 
 
 const args = minimist(process.argv.slice(2));
-const timezone = moment.tz.guess();
+const timezone = moment.tz.guess() || args.j;
 var day = args.d;
 
 if ('h' in args) {
@@ -20,28 +20,22 @@ if ('h' in args) {
     process.exit(0);
 }
 
-const longitude = args.e || args.w*-1;
-const latitude = args.n || args.s *-1;
+const longitude = args.e || args.w * -1;
+const latitude = args.n || args.s * -1;
 const req = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&timezone=' + timezone + '&daily=precipitation_hours');
 const dt = await req.json();
 
 if('j' in args){
-    dt.latitude = parseFloat(data.latitude.toFixed(2));
-    dt.longitude = parseFloat(data.longitude.toFixed(2));
     console.log(dt);
-    process.exit(0);
 }
 
 
 if (day == 0) {
   console.log("Rain today!")
-  process.exit(0);
 } else if (day > 1) {
   console.log("Rain in " + day + " days.")
-  process.exit(0);
 } else {
   console.log("Rain expected tomorrow!")
-  process.exit(0);
 }
 
-
+process.exit(0);
