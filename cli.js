@@ -22,7 +22,7 @@ if ('h' in args) {
 
 const longitude = args.e || args.w*-1;
 const latitude = args.n || args.s *-1;
-const req = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&timezone=' + timezone' + &daily=precipitation_hours`);
+const req = await fetch('https://api.open-meteo.com/v1/forecast?latitude=' + latitude + '&longitude=' + longitude + '&timezone=' + timezone + '&daily=precipitation_hours');
 const dt = await req.json();
 
 if('j' in args){
